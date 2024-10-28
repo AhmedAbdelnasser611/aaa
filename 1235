@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map</title>
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <h3>Map of Locations</h3>
+    <div id="map"></div>
+
+    <script>
+        // إنشاء الخريطة وضبط المركز ومستوى التكبير
+        var map = L.map('map').setView([27.816572, 30.546781], 10);
+
+        // إضافة طبقة البلاط من OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // إضافة المواقع وعلامات (دبابيس) للخريطة
+        var locations = [
+            {"name": "مصنع القناة للسكر", "lat": 27.816572, "lon": 30.546781},
+            {"name": "اهناسيا", "lat": 29.0898017, "lon": 30.94701},
+            {"name": "مازوره", "lat": 28.8825904, "lon": 30.8121589},
+            {"name": "سمسطا", "lat": 28.9580228, "lon": 30.8422154},
+            {"name": "بنى احمد", "lat": 28.0392336705908, "lon": 30.7621616497635},
+            {"name": "اقفهص", "lat": 28.7862440106553, "lon": 30.8222146332263},
+            {"name": "الجرنوس", "lat": 28.5849877694905, "lon": 30.7346187159419},
+            {"name": "أبا البلد", "lat": 28.5853932, "lon": 30.7611089},
+            {"name": "منتوت", "lat": 27.9143810272216, "lon": 30.739086151123},
+            {"name": "منشاه منبال", "lat": 28.4190953, "lon": 30.6973536},
+            {"name": "كوم ابوخلاد", "lat": 29.1912967, "lon": 31.0460928},
+            {"name": "عزبة الوجاك", "lat": 27.635437549611, "lon": 30.8118482306599},
+            {"name": "بنى عبيد", "lat": 27.9508214, "lon": 30.7714199},
+            {"name": "الاشمونين", "lat": 27.7799614, "lon": 30.792777},
+            {"name": "ام قمص", "lat": 27.7202192, "lon": 30.7939964},
+            {"name": "كوم اللوف", "lat": 28.2577447, "lon": 30.7067421},
+            {"name": "ببا", "lat": 29.0012493, "lon": 30.9634626},
+            {"name": "بلنصوره", "lat": 27.9244682276432, "lon": 30.6963258236646},
+            {"name": "كشك المرور - طاميه", "lat": 29.4823206, "lon": 30.9689116},
+            {"name": "ابشاده", "lat": 27.8393524, "lon": 30.7473052},
+            {"name": "سفاى", "lat": 27.8972358703613, "lon": 30.8013248443603},
+            {"name": "عزبه احمد وهبه", "lat": 29.0905853, "lon": 31.094674},
+            {"name": "المحرص", "lat": 27.8292518, "lon": 30.7995077},
+            {"name": "ابوالعباس", "lat": 28.5312264789434, "lon": 30.7432859390974},
+            {"name": "بوش", "lat": 29.1476833, "lon": 31.1172683},
+            {"name": "تلت", "lat": 28.855097576938, "lon": 30.8296101540327},
+            {"name": "تنده", "lat": 27.6816568, "lon": 30.7772453},
+        ];
+
+        // إضافة العلامات لكل موقع
+        locations.forEach(function(location) {
+            var marker = L.marker([location.lat, location.lon]).addTo(map);
+            marker.bindPopup(`<a href='https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lon}' target='_blank'>${location.name}</a>`);
+        });
+    </script>
+</body>
+</html>
